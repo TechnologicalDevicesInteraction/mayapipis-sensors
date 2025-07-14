@@ -1,0 +1,19 @@
+services:
+  iot_postgres_dev:
+    container_name: iot-postgres-dev
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: ${DEV_DB_NAME}
+      POSTGRES_USER: ${DEV_DB_USERNAME}
+      POSTGRES_PASSWORD: ${DEV_DB_PASSWORD}
+    ports:
+      - "5437:5432"
+    volumes:
+      - postgres_development_data:/var/lib/postgresql/data
+    profiles:
+      - development
+    env_file:
+      - .env
+
+volumes:
+  postgres_development_data: {}
